@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  commands:
+    format-check:
+      run: powershell -Command "clang-format --dry-run --Werror @(git ls-files '*.cpp' '*.h')"
+    build-check:
+      run: powershell -Command "cmake -B build; cmake --build build"
