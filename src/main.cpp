@@ -52,9 +52,9 @@ vector<string> split(const string& s, char delim) {
 int main() {
 	string command;
 	int waveSizeFakes = 1;
-	const int waveNum = 9;
-	const GameLength gameLength = LONG;
-	const Difficulty difficulty = HOE;
+	int waveNum = 9;
+	GameLength gameLength = LONG;
+	Difficulty difficulty = HOE;
 
 	while (true) {
 		cout << "Enter command: ";
@@ -79,6 +79,50 @@ int main() {
 				waveSizeFakes = stoi(splitCommands[1]);
 			}
 			cout << "WaveSizeFakes: " << waveSizeFakes << endl;
+			continue;
+		}
+
+		if (key == "!cdwn") {
+			if (hasValue) {
+				waveNum = stoi(splitCommands[1]);
+			}
+			cout << "WaveNum: " << waveNum << endl;
+			continue;
+		}
+
+		if (key == "!cdgl") {
+			if (hasValue) {
+				const string value = splitCommands[1];
+				const int intValue = stoi(value);
+				if (intValue >= SHORT && intValue <= LONG) {
+					gameLength = static_cast<GameLength>(intValue);
+				} else {
+					cout << "Invalid value" << endl;
+				}
+			}
+			cout << "GameLength: " << gameLength << endl;
+			continue;
+		}
+
+		if (key == "!cdd") {
+			if (hasValue) {
+				const string value = splitCommands[1];
+				const int intValue = stoi(value);
+				if (intValue >= NORMAL && intValue <= HOE) {
+					difficulty = static_cast<Difficulty>(intValue);
+				} else {
+					cout << "Invalid value" << endl;
+				}
+			}
+			cout << "Difficulty: " << difficulty << endl;
+			continue;
+		}
+
+		if (key == "!cdinfo") {
+			cout << "WaveSizeFakes: " << waveSizeFakes << endl;
+			cout << "WaveNum: " << waveNum << endl;
+			cout << "GameLength: " << gameLength << endl;
+			cout << "Difficulty: " << difficulty << endl;
 			continue;
 		}
 
